@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PROLIMBE | Productos de Limpieza Swipe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f6f8f9;
+      color: #2c2c2c;
+      padding-top: 80px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #0a7c7b;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar.hide {
+      transform: translateY(-100%);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-links a {
+      margin-left: 25px;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 0;
+        background: #0a7c7b;
+        width: 220px;
+        display: none;
+        flex-direction: column;
+      }
+
+      .nav-links a {
+        padding: 14px;
+        margin: 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #0a7c7b;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .hero .cta {
+      display: inline-block;
+      background: #0a7c7b;
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-weight: 500;
+    }
+
+    .hero-image {
+      background: linear-gradient(135deg, #0a7c7b, #11a5a3);
+      height: 320px;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    /* ===== SECCIÓN ===== */
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #0a7c7b;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0a7c7b;
+      color: #fff;
+      padding: 30px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-container a {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      max-width: 600px;
+      width: 90%;
+      padding: 30px;
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .modal-content h3 {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 15px;
+      color: #0a7c7b;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <img src="logo-prolimbe.png" alt="PROLIMBE">
+      PROLIMBE
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#">Inicio</a>
+      <a href="promociones.html">Promociones</a>
+      <a href="productos.html">Productos</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Limpieza profesional para hogar e instituciones</h1>
+    <p>
+      En <strong>PROLIMBE</strong> ofrecemos productos de limpieza de la marca
+      <strong>Swipe</strong>, diseñados para brindar eficiencia, rendimiento y
+      confianza tanto en el hogar como en entornos institucionales.
+    </p>
+    <a href="productos.html" class="cta">Ver catálogo</a>
+  </div>
+  <div class="hero-image"></div>
+</section>
+
+<!-- SECCIÓN -->
+<section class="section">
+  <h2>Nuestro enfoque</h2>
+  <div class="cards">
+    <div class="card">Limpieza para el hogar</div>
+    <div class="card">Soluciones institucionales</div>
+    <div class="card">Distribución local en Aguascalientes</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <p>📍 Aguascalientes, Ags. CP 20286</p>
+    <p><a id="openPolicy">Política de privacidad</a></p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="policyModal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h3>Política de privacidad</h3>
+    <p>
+      PROLIMBE protege la información de sus clientes y no comparte datos
+      personales con terceros. La información proporcionada se utiliza
+      únicamente para fines de contacto y atención comercial.
+    </p>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  const navbar = document.getElementById('navbar');
+
+  hamburger.onclick = () => navLinks.classList.toggle('active');
+
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const current = window.pageYOffset;
+    navbar.classList.toggle('hide', current > lastScroll);
+    lastScroll = current;
+  });
+
+  const modal = document.getElementById('policyModal');
+  document.getElementById('openPolicy').onclick = () => modal.classList.add('active');
+  document.getElementById('closeModal').onclick = () => modal.classList.remove('active');
+  modal.onclick = e => e.target === modal && modal.classList.remove('active');
+  document.addEventListener('keydown', e => e.key === 'Escape' && modal.classList.remove('active'));
+</script>
+
+</body>
+</html>
